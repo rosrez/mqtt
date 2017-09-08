@@ -1,0 +1,42 @@
+@@. CONFIGURE THE TARGET BROKER
+
+# Disallow non-authenticated clients
+allow_anonymous false
+
+# password file
+password_file passwords
+
+@@. CONFIGURE THE BRIDGED BROKER
+
+connection bridge-01
+address 127.0.0.1:8883
+topic /home/admin out 0 "" ""
+
+remote_clientid bridged-client
+remote_username bridgeduser
+remote_password bridgedpassword
+
+bridge_cafile /home/admin/certs/mqtt/ca.pem
+
+bridge_insecure false
+
+@@. RUN THE TARGET BROKER
+
+mosquitto -c mosquitto.conf
+
+v@@. SUBSCRIBE TO THE TARGET BROKER
+
+$ mosquitto_sub -p 8883 --cafile ~/certs/mqtt/ca.crt -t /home/admin -h 127.0.0.1 --username bridgeduser --pw bridgedpassword
+
+@@. RUN THE BRIDGED BROKER
+
+mosquitto -c bridged.conf
+
+@@. PUBLISH TO BRIDGED BROKER
+
+mosquitto_pub -p 1883 -t /home/admin -h 127.0.0.1 -m "TEST MESSAGE --- TEST"
+
+@@. THE TARGET BROKER GETS THE MESSAGE
+
+TEST MESSAGE --- TEST
+
