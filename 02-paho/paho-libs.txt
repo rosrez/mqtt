@@ -1,0 +1,44 @@
+@@
+1. PAHO LIBRARIES - "MAKE INSTALL" OUTPUT
+
+$ sudo make install
+[sudo] password for admin: 
+mkdir -p build/output/samples
+mkdir -p build/output/test
+echo OSTYPE is Linux
+OSTYPE is Linux
+install -m 644  build/output/libpaho-mqtt3cs.so.1.0 /usr/local/lib
+install -m 644  build/output/libpaho-mqtt3a.so.1.0 /usr/local/lib
+install -m 644  build/output/libpaho-mqtt3as.so.1.0 /usr/local/lib
+install  build/output/MQTTVersion /usr/local/bin
+/sbin/ldconfig /usr/local/lib
+ln -s libpaho-mqtt3c.so.1 /usr/local/lib/libpaho-mqtt3c.so
+ln -s libpaho-mqtt3cs.so.1 /usr/local/lib/libpaho-mqtt3cs.so
+ln -s libpaho-mqtt3a.so.1 /usr/local/lib/libpaho-mqtt3a.so
+ln -s libpaho-mqtt3as.so.1 /usr/local/lib/libpaho-mqtt3as.so
+install -m 644 src/MQTTAsync.h /usr/local/include
+install -m 644 src/MQTTClient.h /usr/local/include
+install -m 644 src/MQTTClientPersistence.h /usr/local/include
+
+@@
+2. DEPENDENCIES
+
+# ldd /usr/local/lib/libpaho-mqtt3cs.so.1 | sort
+ldd: warning: you do not have execution permission for `/usr/local/lib/libpaho-mqtt3cs.so.1'
+        /lib64/ld-linux-x86-64.so.2 (0x0000557ebd452000)
+        libcom_err.so.2 => /lib64/libcom_err.so.2 (0x00007f19ebac4000)
+        libcrypto.so.10 => /lib64/libcrypto.so.10 (0x00007f19ec5bb000)
+        libc.so.6 => /lib64/libc.so.6 (0x00007f19ec1fa000)
+        libdl.so.2 => /lib64/libdl.so.2 (0x00007f19ecc82000)
+        libgssapi_krb5.so.2 => /lib64/libgssapi_krb5.so.2 (0x00007f19ebfad000)
+        libk5crypto.so.3 => /lib64/libk5crypto.so.3 (0x00007f19eb891000)
+        libkeyutils.so.1 => /lib64/libkeyutils.so.1 (0x00007f19eb267000)
+        libkrb5.so.3 => /lib64/libkrb5.so.3 (0x00007f19ebcc8000)
+        libkrb5support.so.0 => /lib64/libkrb5support.so.0 (0x00007f19eb46c000)
+        libpcre.so.1 => /lib64/libpcre.so.1 (0x00007f19eabb8000)
+        libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f19ece86000)
+        libresolv.so.2 => /lib64/libresolv.so.2 (0x00007f19eb04c000)
+        libselinux.so.1 => /lib64/libselinux.so.1 (0x00007f19eae28000)
+        libssl.so.10 => /lib64/libssl.so.10 (0x00007f19eca08000)
+        libz.so.1 => /lib64/libz.so.1 (0x00007f19eb67b000)
+        linux-vdso.so.1 (0x00007ffda66c5000)

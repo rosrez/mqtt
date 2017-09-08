@@ -1,0 +1,11 @@
+$ mosquitto -v -c mosquitto.conf
+1502367266: mosquitto version 1.4.9 (build date 2016-07-01 15:07:21+0000) starting
+1502367266: Config loaded from mosquitto.conf.
+1502367266: Opening ipv4 listen socket on port 8883.
+1502367266: Opening ipv6 listen socket on port 8883.
+
+1502367743: New connection from 127.0.0.1 on port 8883.
+1502367743: OpenSSL Error: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+1502367743: OpenSSL Error: error:140940E5:SSL routines:ssl3_read_bytes:ssl handshake failure
+1502367743: Socket error on client <unknown>, disconnecting.
+

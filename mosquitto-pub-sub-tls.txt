@@ -1,0 +1,27 @@
+SUBSCRIBE
+
+$ mosquitto_sub -p 8883 --cafile ~/certs/mqtt/ca.crt -t /home/admin -h 127.0.0.1
+
+
+PUBLISH
+
+$ mosquitto_pub -p 8883 --cafile ~/certs/mqtt/ca.crt -t /home/admin -h 127.0.0.1 -m "TEST MESSAGE --- TEST"
+
+OPTIONS EXPLAINED:
+
+-p 8883
+        Broker port to connect to. 8883 is used for TLS-encrypted communication.
+
+--cafile ~/certs/mqtt/ca.crt
+        The (root) CA authority certificate the client is told to trust. The file is in (PEM) format, but
+        if the alternative --capath option is used, it expects the *.crt extensions of certificate files.
+
+-h (--host)
+        host to connect to. This parameter is matched against the Common Name of the certificate the
+        server presents. So, for example, if we omit this parameter, mosquitto clients will use "localhost"
+        by default. localhost doesn't match the (DNS, hosts) name we used to connect to the broker so
+        the underlying TLS implementation (OpenSSL) rejects it.
+
+        NOTE: It is strongly advised to use the subjAltName field where you can place multiple different
+        names for the same host. In the case above, that could be: localhost, 127.0.0.1, 192.168.1.6 (local IP
+        of the NIC).
